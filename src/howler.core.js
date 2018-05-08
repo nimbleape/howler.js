@@ -2167,7 +2167,7 @@
     if (Howler.usingWebAudio) {
       Howler.masterGain = (typeof Howler.ctx.createGain === 'undefined') ? Howler.ctx.createGainNode() : Howler.ctx.createGain();
       Howler.masterGain.gain.value = 1;
-      Howler.masterGain.connect(self.destination || self.ctx.destination);
+      Howler.masterGain.connect(Howler.destination || Howler.ctx.destination );
     }
 
     // Re-run the setup on Howler.
