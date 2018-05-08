@@ -47,7 +47,7 @@
       self.usingWebAudio = true;
       self.autoSuspend = true;
       self.ctx = null;
-      self.destination = null;
+      self.dest = null;
 
       // Set to false to disable the auto iOS enabler.
       self.mobileAutoEnable = true;
@@ -182,7 +182,7 @@
      * @return {Howler}
      */
     destination: function(destination) {
-      return (this || Howler).destination = destination;
+      return (this || Howler).dest = destination;
     },
 
     /**
@@ -315,7 +315,7 @@
         // Create an empty buffer.
         var source = self.ctx.createBufferSource();
         source.buffer = self._scratchBuffer;
-        source.connect(self.destination || self.ctx.destination);
+        source.connect(self.dest || self.ctx.destination);
 
         // Play the empty buffer.
         if (typeof source.start === 'undefined') {
@@ -2167,7 +2167,7 @@
     if (Howler.usingWebAudio) {
       Howler.masterGain = (typeof Howler.ctx.createGain === 'undefined') ? Howler.ctx.createGainNode() : Howler.ctx.createGain();
       Howler.masterGain.gain.value = 1;
-      Howler.masterGain.connect(Howler.destination || Howler.ctx.destination );
+      Howler.masterGain.connect(Howler.dest || Howler.ctx.destination );
     }
 
     // Re-run the setup on Howler.
